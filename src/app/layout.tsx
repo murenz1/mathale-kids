@@ -12,10 +12,7 @@ export const metadata: Metadata = {
   description: "From the heart of Mathare, we nurture creativity, restore hope, and transform young lives through dance, music, and storytelling. Support our mission to empower the next generation of artists.",
   keywords: "Mathare Kids Talents Hub, youth empowerment, creative arts, dance, music, Nairobi, Kenya, talent development, community transformation, performing arts, children education",
   authors: [{ name: "Mathare Kids Talents Hub" }],
-  icons: {
-    icon: '/logo.png?v=2',
-    apple: '/logo.png?v=2',
-  },
+  metadataBase: new URL("https://matharekidstalentshub.org"),
   openGraph: {
     title: "Mathare Kids Talents Hub - Where Talent Meets Opportunity",
     description: "Transforming young lives through creative arts in Mathare, Nairobi. Join us in nurturing the next generation of artists and leaders.",
@@ -39,6 +36,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/logo.png?v=3" sizes="32x32" type="image/png" />
+        <link rel="shortcut icon" href="/logo.png?v=3" type="image/png" />
+        <link rel="apple-touch-icon" href="/logo.png?v=3" sizes="180x180" />
+      </head>
       <body className={`${inter.variable} font-sans antialiased bg-[#F9FAFB] text-[#111111]`}>
         {children}
       </body>
