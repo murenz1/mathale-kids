@@ -159,6 +159,8 @@ export default function Footer() {
               Made with 
               <Heart className="w-4 h-4 mx-2 text-[#F59E0B]" />
               in Mathare, Nairobi
+              <span className="mx-2">|</span>
+              Developed by <a href="https://portfolio-two-liart-60s9veiuo7.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[#F59E0B] hover:underline ml-1">Murenzi Dan</a>
             </div>
           </div>
         </motion.div>
