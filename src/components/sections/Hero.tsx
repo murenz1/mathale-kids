@@ -1,11 +1,14 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight, Play, ShoppingBag } from 'lucide-react'
+import { ArrowRight, ShoppingBag } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import DonationModal from '@/components/DonationModal'
 
 export default function Hero() {
+  const [donationModalOpen, setDonationModalOpen] = useState(false)
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image from /public */}
@@ -73,12 +76,10 @@ export default function Hero() {
           <Button 
             size="lg" 
             className="bg-[#F59E0B] hover:bg-[#D97706] text-black px-8 py-6 text-lg font-semibold group"
-            asChild
+            onClick={() => setDonationModalOpen(true)}
           >
-            <Link href="/donate">
-              Support the Kids
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            Support the Kids
+            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Button>
           
           <Button 
@@ -132,6 +133,8 @@ export default function Hero() {
           </motion.div>
         </motion.div>
       </div>
+      
+      <DonationModal isOpen={donationModalOpen} onClose={() => setDonationModalOpen(false)} />
     </section>
   )
 }

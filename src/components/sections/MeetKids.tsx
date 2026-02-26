@@ -3,9 +3,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { X } from 'lucide-react'
-import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
+import DonationModal from '@/components/DonationModal'
 
 interface Kid {
   id: number
@@ -55,6 +55,7 @@ const kidsData: Kid[] = [
 
 export default function MeetKids() {
   const [selectedKid, setSelectedKid] = useState<Kid | null>(null)
+  const [donationModalOpen, setDonationModalOpen] = useState(false)
 
   return (
     <section id="kids" className="py-20 bg-[#F9FAFB]">
@@ -131,11 +132,9 @@ export default function MeetKids() {
           <Button 
             size="lg"
             className="bg-[#F59E0B] hover:bg-[#D97706] text-black font-semibold px-8 py-6 text-lg"
-            asChild
+            onClick={() => setDonationModalOpen(true)}
           >
-            <Link href="/donate">   
-              Support a Childs Dream
-            </Link>
+            Support a Childs Dream
           </Button>
         </motion.div>
       </div>
@@ -198,6 +197,7 @@ export default function MeetKids() {
           </motion.div>
         </motion.div>
       )}
+      <DonationModal isOpen={donationModalOpen} onClose={() => setDonationModalOpen(false)} />
     </section>
   )
 }

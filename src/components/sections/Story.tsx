@@ -8,27 +8,31 @@ import React from 'react'
 export default function Story() {
   const storySections = [
     {
-      title: "Born in the Heart",
-      description: "From the vibrant streets of Mathare, where creativity flows through every corner.",
+      title: "Born in the Heart of Mathare",
+      description: "From the vibrant streets of Mathare, Nairobi, where creativity flows through every corner. Our youth empowerment journey began in this Kenyan community, discovering talented children with incredible artistic potential in dance, music, and performance arts.",
       image: "/1.jpeg",
+      imageAlt: "Mathare Kids Talents Hub - Young dancers performing in Mathare, Nairobi Kenya",
       reversed: false
     },
     {
       title: "Talent is Universal",
-      description: "We discovered incredible artistic potential in every child we met.",
+      description: "We discovered incredible artistic potential in every child we met. From dance training to music education, these young artists from Mathare possess natural abilities that deserve professional development and global recognition.",
       image: "/5.jpeg",
+      imageAlt: "Talented children from Mathare showcasing their dance and music skills",
       reversed: true
     },
     {
       title: "Opportunity is Not",
-      description: "Access to professional training remained scarce and distant.",
+      description: "Access to professional performing arts training remained scarce and distant for children in Kenyan slum communities. We bridge this gap, providing quality dance education, music lessons, and performance opportunities that transform lives.",
       image: "/3.jpeg",
+      imageAlt: "Mathare youth receiving professional dance and music training",
       reversed: false
     },
     {
       title: "A Movement Begins",
-      description: "What started small grew into a professional hub for young artists.",
+      description: "What started as a small community initiative grew into Mathare Kids Talents Hub - a professional center for youth empowerment through creative arts. Today we nurture over 50 young artists, providing education, meals, and a path to a brighter future.",
       image: "/4.jpeg",
+      imageAlt: "Mathare Kids Talents Hub - Professional youth arts organization in Nairobi",
       reversed: true
     }
   ]
@@ -107,9 +111,11 @@ export default function Story() {
                   transition={{ duration: 0.3 }}
                 >
                   <div className="aspect-[4/3] bg-gradient-to-br from-[#F3F4F6] to-[#F9FAFB]">
-                    <div 
-                      className="w-full h-full bg-cover bg-center" 
-                      style={{ backgroundImage: `url(${section.image})` }}
+                    <img 
+                      src={section.image}
+                      alt={section.imageAlt}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                   </div>
                   

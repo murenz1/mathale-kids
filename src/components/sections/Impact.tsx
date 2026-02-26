@@ -3,9 +3,9 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Trophy, Target, Utensils, Users, Award, Music, Heart, Star } from 'lucide-react'
-import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import DonationModal from '@/components/DonationModal'
 
 interface StatItem {
   icon: any
@@ -86,6 +86,8 @@ function AnimatedCounter({ target, suffix = '' }: { target: string; suffix?: str
 }
 
 export default function Impact() {
+  const [donationModalOpen, setDonationModalOpen] = useState(false)
+  
   return (
     <section id="impact" className="py-20 bg-[#F9FAFB]">
       <div className="container mx-auto px-6">
@@ -241,12 +243,14 @@ export default function Impact() {
           <Button 
             size="lg"
             className="bg-[#F59E0B] hover:bg-[#D97706] text-black font-semibold px-8 py-6 text-lg"
-            asChild
+            onClick={() => setDonationModalOpen(true)}
           >
-            <Link href="/donate">Join Our Mission</Link>
+            Join Our Mission
           </Button>
         </motion.div>
       </div>
+      
+      <DonationModal isOpen={donationModalOpen} onClose={() => setDonationModalOpen(false)} />
     </section>
   )
 }

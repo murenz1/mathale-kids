@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Allow all search engines to access all parts of the site
+Disallow: /api/
+Disallow: /_next/
+
+# Sitemap location
+Sitemap: https://matharekidstalentshub.org/sitemap.xml
+
+# Crawl rate suggestion
+Crawl-delay: 10

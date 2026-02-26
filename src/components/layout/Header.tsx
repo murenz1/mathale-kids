@@ -7,10 +7,12 @@ import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import DonationModal from '@/components/DonationModal'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [donationModalOpen, setDonationModalOpen] = useState(false)
   const pathname = usePathname()
   const isSubPage = pathname === '/shop' || pathname === '/donate'
 
@@ -31,6 +33,7 @@ export default function Header() {
   ]
 
   return (
+    <>
     <motion.header
       className="fixed top-0 h-18 w-full z-50 bg-white/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.15)] py-3 transition-all duration-300"
       initial={{ y: -100 }}
@@ -67,11 +70,12 @@ export default function Header() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            <Link href="/donate">
-              <Button className="bg-[#F59E0B] hover:bg-[#D97706] text-black font-semibold px-6">
-                Support Us
-              </Button>
-            </Link>
+            <Button 
+              className="bg-[#F59E0B] hover:bg-[#D97706] text-black font-semibold px-6"
+              onClick={() => setDonationModalOpen(true)}
+            >
+              Support Us
+            </Button>
           </motion.div>
         </div>
 
@@ -103,14 +107,19 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
-            <Button asChild className="bg-[#F59E0B] hover:bg-[#D97706] text-black font-semibold w-full">
-              <Link href="/donate">
-                Support Us
-              </Link>
+            <Button 
+              className="bg-[#F59E0B] hover:bg-[#D97706] text-black font-semibold w-full"
+              onClick={() => setDonationModalOpen(true)}
+            >
+              Support Us
             </Button>
           </div>
         </motion.div>
       )}
+      
     </motion.header>
+    
+    <DonationModal isOpen={donationModalOpen} onClose={() => setDonationModalOpen(false)} />
+    </>
   )
 }

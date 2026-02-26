@@ -92,14 +92,12 @@ Please confirm availability.`
     window.open(`mailto:${EMAIL}?subject=${subject}&body=${body}`, '_blank')
   }
 
-  if (!product) return null
-
-  const hasColors = product.colors && product.colors.length > 0
-  const hasSizes = product.sizes && product.sizes.length > 0
+  const hasColors = product?.colors && product.colors.length > 0
+  const hasSizes = product?.sizes && product.sizes.length > 0
 
   return (
     <AnimatePresence>
-      {isOpen && (
+      {isOpen && product && (
         <>
           {/* Backdrop */}
           <motion.div
@@ -110,14 +108,20 @@ Please confirm availability.`
             className="fixed inset-0 bg-black/60 z-50 backdrop-blur-sm"
           />
           
-          {/* Modal */}
+          {/* Modal Container - Centered */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
           >
-            <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto pointer-events-auto">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative"
+            >
               <div className="grid md:grid-cols-2 gap-0">
                 {/* Image Section */}
                 <div className="relative h-64 md:h-auto md:min-h-[500px] bg-[#F9FAFB] rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none overflow-hidden">
@@ -205,7 +209,7 @@ Please confirm availability.`
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </>
       )}

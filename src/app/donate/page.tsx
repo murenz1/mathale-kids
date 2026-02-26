@@ -40,6 +40,8 @@ import {
 } from '@/components/ui/select'
 import Header from '@/components/layout/Header'
 import Link from 'next/link'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import FAQSchema, { defaultFAQs } from '@/components/FAQSchema'
 
 // Impact Stats
 const impactStats = [
@@ -731,10 +733,13 @@ export default function DonatePage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#F9FAFB]">
-      <Header />
-      
-      {/* Hero Section */}
+    <>
+      <FAQSchema items={defaultFAQs} />
+      <main className="min-h-screen bg-[#F9FAFB]">
+        <Header />
+        <Breadcrumbs items={[{ label: 'Donate', href: '/donate' }]} />
+        
+        {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-b from-white to-[#F9FAFB]">
         <div className="container mx-auto px-6">
           <motion.div
@@ -934,6 +939,7 @@ export default function DonatePage() {
       <PostalModal isOpen={activeModal === 'postal'} onClose={() => setActiveModal(null)} />
       <CashModal isOpen={activeModal === 'cash'} onClose={() => setActiveModal(null)} />
       <SuccessModal isOpen={showSuccess} onClose={() => setShowSuccess(false)} />
-    </main>
+      </main>
+    </>
   )
 }

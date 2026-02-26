@@ -9,6 +9,8 @@ import { Card, CardContent } from '@/components/ui/card'
 import Image from 'next/image'
 import Header from '@/components/layout/Header'
 import ProductModal from '@/components/shop/ProductModal'
+import DonationModal from '@/components/DonationModal'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 const products = [
   {
@@ -72,6 +74,7 @@ const features = [
 export default function ShopPage() {
   const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [donationModalOpen, setDonationModalOpen] = useState(false)
 
   const openModal = (product: typeof products[0]) => {
     setSelectedProduct(product)
@@ -86,6 +89,7 @@ export default function ShopPage() {
   return (
     <main className="min-h-screen bg-white">
       <Header />
+      <Breadcrumbs items={[{ label: 'Shop', href: '/shop' }]} />
       
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-[#F59E0B]/10 via-[#F9FAFB] to-white">
@@ -240,14 +244,13 @@ export default function ShopPage() {
               in Mathare to develop their talents and build a brighter future.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Link href="/donate">
-                  <Button 
-                    size="lg" 
-                    className="bg-white text-[#111111] hover:bg-[#F3F4F6] px-8 py-6 text-lg font-semibold"
-                  >
-                    Donate Now
-                  </Button>
-                </Link>
+              <Button 
+                size="lg" 
+                className="bg-white text-[#111111] hover:bg-[#F3F4F6] px-8 py-6 text-lg font-semibold"
+                onClick={() => setDonationModalOpen(true)}
+              >
+                Donate Now
+              </Button>
               <Button 
                 variant="outline"
                 size="lg"
@@ -291,6 +294,8 @@ export default function ShopPage() {
         isOpen={isModalOpen}
         onClose={closeModal}
       />
+      
+      <DonationModal isOpen={donationModalOpen} onClose={() => setDonationModalOpen(false)} />
     </main>
   )
 }

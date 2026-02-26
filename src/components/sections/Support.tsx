@@ -1,40 +1,43 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { HandHeart, Building2, Heart, Calendar } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import DonationModal from '@/components/DonationModal'
 
 export default function Support() {
+  const [donationModalOpen, setDonationModalOpen] = useState(false)
   const supportMethods = [
     {
       icon: Calendar,
-      title: 'Performances & Bookings',
-      description: 'Book our talented young performers for your events, corporate functions, festivals, and special occasions.',
+      title: 'Book Our Talented Performers',
+      description: 'Hire Mathare Kids Talents Hub young dancers and musicians for corporate events, festivals, weddings, and special occasions in Nairobi, Kenya. Professional performances that inspire and entertain.',
       cta: 'Book Performance',
-      features: ['Corporate Events', 'Festivals', 'Private Functions', 'International Tours']
+      features: ['Corporate Events', 'Music Festivals', 'Private Functions', 'Community Shows']
     },
     {
       icon: Building2,
-      title: 'Brand Collaborations',
-      description: 'Partner with us for authentic brand storytelling, campaigns, and cause marketing initiatives.',
+      title: 'Corporate Partnerships & Sponsorships',
+      description: 'Partner with our Kenya-based youth charity for authentic brand storytelling, social impact campaigns, and cause marketing initiatives that support children in Mathare.',
       cta: 'Partner With Us',
-      features: ['Brand Campaigns', 'Content Creation', 'Event Sponsorship', 'Product Collaborations']
+      features: ['Brand Campaigns', 'CSR Initiatives', 'Event Sponsorship', 'Youth Development']
     },
     {
       icon: Heart,
-      title: 'Direct Donations',
-      description: 'Support our mission through one-time or recurring donations that directly fund training and resources.',
+      title: 'Make a Donation - Transform Lives',
+      description: 'Support our non-profit mission through secure donations via M-Pesa, bank transfer, or Western Union. Your contribution funds dance training, music education, meals, and school support for Mathare children.',
       cta: 'Donate Now',
-      features: ['Training Programs', 'Equipment', 'Education Support', 'Facility Maintenance']
+      features: ['Dance Training', 'Music Education', 'Meals & Nutrition', 'School Support']
     },
     {
       icon: HandHeart,
-      title: 'Strategic Partnerships',
-      description: 'Collaborate with us on long-term initiatives that create sustainable impact and opportunities.',
+      title: 'Volunteer & Strategic Partnerships',
+      description: 'Join our community of volunteers and partners. Collaborate on educational programs, mentorship initiatives, and resource sharing that creates sustainable impact for Kenyan youth.',
       cta: 'Become Partner',
-      features: ['Educational Partners', 'Technical Support', 'Mentorship Programs', 'Resource Sharing']
+      features: ['Volunteer Programs', 'Educational Partners', 'Mentorship', 'Resource Sharing']
     }
   ]
 
@@ -98,13 +101,16 @@ export default function Support() {
                   <Button 
                     className="w-full bg-[#F59E0B] hover:bg-[#D97706] text-black font-semibold group-hover:transform group-hover:scale-105 transition-all duration-300"
                     size="lg"
-                    asChild
+                    onClick={method.title === 'Direct Donations' ? () => setDonationModalOpen(true) : undefined}
+                    asChild={method.title !== 'Direct Donations'}
                   >
-                    <Link 
-                      href={method.title === 'Direct Donations' ? '/donate' : '#contact'}
-                    >
-                      {method.cta}
-                    </Link>
+                    {method.title === 'Direct Donations' ? (
+                      <span>{method.cta}</span>
+                    ) : (
+                      <Link href="#contact">
+                        {method.cta}
+                      </Link>
+                    )}
                   </Button>
                 </CardContent>
               </Card>
@@ -192,11 +198,9 @@ export default function Support() {
             <Button 
               size="lg" 
               className="bg-white text-[#111111] hover:bg-[#F3F4F6] px-8 py-6 text-lg font-semibold"
-              asChild
+              onClick={() => setDonationModalOpen(true)}
             >
-              <Link href="/donate">
-                Start Supporting Today
-              </Link>
+              Start Supporting Today
             </Button>
             <Button 
               variant="outline" 
@@ -210,6 +214,8 @@ export default function Support() {
           </div>
         </motion.div>
       </div>
+      
+      <DonationModal isOpen={donationModalOpen} onClose={() => setDonationModalOpen(false)} />
     </section>
   )
 }

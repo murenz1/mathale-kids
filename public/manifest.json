@@ -1,0 +1,35 @@
+{
+  "name": "Mathare Kids Talents Hub",
+  "short_name": "MKTH",
+  "description": "Where Talent Meets Opportunity - Transforming young lives through creative arts in Mathare, Nairobi",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F9FAFB",
+  "theme_color": "#F59E0B",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["charity", "education", "non-profit"],
+  "screenshots": [
+    {
+      "src": "/logo.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}
